@@ -15,3 +15,5 @@ const movieSchema = new Schema({
     releaseDate: { type: Date, required: true },
     cast: { type: String, required: true },
 });
+
+module.exports = mongoose.model('Movie', movieSchema);
