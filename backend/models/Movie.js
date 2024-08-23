@@ -13,7 +13,7 @@ const movieSchema = new Schema({
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     releaseDate: { type: Date, required: true },
-    cast: { type: String, required: true },
+    cast: { type: Array, required: true },
 });
 
 module.exports = mongoose.model('Movie', movieSchema);
