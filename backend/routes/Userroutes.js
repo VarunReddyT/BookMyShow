@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Theatre = require('../models/Theatre');
 const router = express.Router();
 router.post('/register', async (req, res) => {
   const { username, password, name, mobilenumber,email} = req.body;
@@ -29,5 +30,20 @@ router.post('/login', async (req, res) => {
   const token = jwt.sign({ id: user._id, role : user.role }, 'bms',{expiresIn: '1h'});
   res.header('Authorization', token).send(token);
 });
+//register Theatre
+router.post('/theatreregister', async (req, res) => {
+  const { name, city, seats, image, facilities } = req.body;
+  const theatre = await Theatre.findOne({name});
+  if (theatre) return res.status(401).send('Theatre already exists');
+  const theatres = new Theatre({ name, city, seats, image, facilities });
+  try {
+    const savedTheatre = await theatres.save();
+    res.send(savedTheatre);
+    console.log("Theatre saved successfully");
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 
 module.exports = router;
