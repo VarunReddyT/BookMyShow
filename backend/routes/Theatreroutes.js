@@ -21,6 +21,18 @@ router.get('/gettheatres', async (req, res) => {
     res.send(theatres);
 }
 );
+//get theatre by movie
+
+router.get('/gettheatre/:movie', async (req, res) => {
+    const theatres = await Theatre.find({movie:req.params.movie});
+    res.send(theatres);
+}
+);
+router.get('/gettheatre/:city', async (req, res) => {
+    const theatres = await Theatre.find({city:req.params.city});
+    res.send(theatres);
+}
+);
 
 router.put('/updatetheatre', async (req, res) => {
     const { name, city, seats, image, facilities } = req.body;
