@@ -1,4 +1,4 @@
-import './styles.css'
+import './css/styles.css'
 import React, { useState } from 'react'
 import clsx from 'clsx'
 
@@ -54,6 +54,9 @@ export default function Theatreseats() {
           {selectedSeats.length * selectedMovie.price}$
         </span>
       </p>
+      <button className="next-button">
+        Next
+      </button>
     </div>
   )
 }
@@ -109,8 +112,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
 
   return (
     <div className="Cinema">
-
-
+      
       <div className="seats">
         {seats.map(seat => {
           const isSelected = selectedSeats.includes(seat)
@@ -138,6 +140,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
           )
         })}
       </div>
+      
       <div className="screen" />
     </div>
   )

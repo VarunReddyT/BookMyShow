@@ -58,4 +58,18 @@ router.get('/showtickets',auth, async (req, res) => {
         res.status(400).send(err);
     }
 });
+
+router.delete('/deleteticket',auth, async (req, res) => {
+    if(req.user.role !== 'customer') return res.status(401).send("Unauthorized");
+    const { orderId } = req.body;
+    try {
+        const deletedTicket = await Reservation.deleteOne({ orderId });
+        res.send(deletedTicket);
+        console.log("Ticket deleted successfully");
+    } catch (err) {
+        res.status(400).send(err);
+    }
+});
+
+
 module.exports = router;

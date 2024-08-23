@@ -1,0 +1,9 @@
+.scroller{
+    max-width: 900px;    
+}
+
+.scroller_inner{
+    display: flex;
+    padding: 10px;
+    gap:20px
+}
