@@ -6,26 +6,27 @@ const movies = [
   {
     name: 'Avenger',
     price: 10,
-    occupied: [20, 21, 30, 1, 2, 8],
+    occupied: ['A20', 'A21', 'A30', 'A1', 'A2', 'A8'],
   },
   {
     name: 'Joker',
     price: 12,
-    occupied: [9, 41, 35, 11, 65, 26],
+    occupied: ['B9', 'B41', 'B35', 'B11', 'B65', 'B26'],
   },
   {
     name: 'Toy story',
     price: 8,
-    occupied: [37, 25, 44, 13, 2, 3],
+    occupied: ['C37', 'C25', 'C44', 'C13', 'C2', 'C3'],
   },
   {
-    name: 'the lion king',
+    name: 'The Lion King',
     price: 9,
-    occupied: [10, 12, 50, 33, 28, 47],
+    occupied: ['D10', 'D12', 'D50', 'D33', 'D28', 'D47'],
   },
 ]
 
-const seats = Array.from({ length: 450 }, (_, i) => i)
+const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+const seats = rows.flatMap(row => Array.from({ length: 25 }, (_, i) => `${row}${i + 1}`))
 
 export default function TheatreSeats() {
   const [selectedMovie, setSelectedMovie] = useState(movies[0])
@@ -113,7 +114,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
   return (
     <div className="Cinema">
       <div className="seats">
-      <div className="upper-txt">
+        <div className="upper-txt">
           <p>Balcony</p>
         </div>
         <div className='upper'>
@@ -143,7 +144,6 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
           )
         })}
         </div>
-        
 
         <div className="middle-txt">
           <p>First Class</p>
@@ -175,7 +175,6 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
             />
           )
         })}
-       
         </div>
 
         <div className='lower-txt'>
