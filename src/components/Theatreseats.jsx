@@ -1,6 +1,6 @@
-import './css/styles.css'
 import React, { useState } from 'react'
 import clsx from 'clsx'
+import './css/styles.css'
 
 const movies = [
   {
@@ -27,7 +27,7 @@ const movies = [
 
 const seats = Array.from({ length: 450 }, (_, i) => i)
 
-export default function Theatreseats() {
+export default function TheatreSeats() {
   const [selectedMovie, setSelectedMovie] = useState(movies[0])
   const [selectedSeats, setSelectedSeats] = useState([])
 
@@ -112,9 +112,45 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
 
   return (
     <div className="Cinema">
-      
       <div className="seats">
-        {seats.map(seat => {
+      <div className="upper-txt">
+          <p>Balcony</p>
+        </div>
+        <div className='upper'>
+        {seats.slice(0, 200).map(seat => {
+          const isSelected = selectedSeats.includes(seat)
+          const isOccupied = movie.occupied.includes(seat)
+          return (
+            <span 
+              tabIndex="0"
+              key={seat}
+              className={clsx(
+                'seat',
+                isSelected && 'selected',
+                isOccupied && 'occupied',
+              )}
+              onClick={isOccupied ? null : () => handleSelectedState(seat)}
+              onKeyPress={
+                isOccupied
+                  ? null
+                  : e => {
+                    if (e.key === 'Enter') {
+                      handleSelectedState(seat)
+                    }
+                  }
+              }
+            />
+          )
+        })}
+        </div>
+        
+
+        <div className="middle-txt">
+          <p>First Class</p>
+        </div>
+
+        <div className='middle'>
+        {seats.slice(250,450).map(seat => {
           const isSelected = selectedSeats.includes(seat)
           const isOccupied = movie.occupied.includes(seat)
           return (
@@ -139,8 +175,41 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
             />
           )
         })}
+       
+        </div>
+
+        <div className='lower-txt'>
+          <p>Second Class</p>
+        </div>
+        
+        <div className='lower'>
+        {seats.slice(200,250).map(seat => {
+          const isSelected = selectedSeats.includes(seat)
+          const isOccupied = movie.occupied.includes(seat)
+          return (
+            <span
+              tabIndex="0"
+              key={seat}
+              className={clsx(
+                'seat',
+                isSelected && 'selected',
+                isOccupied && 'occupied',
+              )}
+              onClick={isOccupied ? null : () => handleSelectedState(seat)}
+              onKeyPress={
+                isOccupied
+                  ? null
+                  : e => {
+                    if (e.key === 'Enter') {
+                      handleSelectedState(seat)
+                    }
+                  }
+              }
+            />
+          )
+        })}
+        </div>
       </div>
-      
       <div className="screen" />
     </div>
   )

@@ -72,17 +72,24 @@ body {
   box-shadow: 0 3px 10px 2px;
 }
 
-.Cinema .seats {
+.Cinema .seats .upper,.lower,.middle{
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: repeat(25, min-content);
+  grid-template-columns: repeat(25, max-content);
   align-items: center;
+}
+
+.Cinema .seats .middle-txt,.upper-txt,.middle-txt,.lower-txt{
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: larger;
 }
 
 .Cinema .seats .seat:nth-child(n+201):nth-child(-n+225) {
   margin-top: 20px;
 }
-.Cinema .seats .seat:nth-child(n+351):nth-child(-n+450) {
+.Cinema .seats .seat:nth-child(n+301):nth-child(-n+325) {
   margin-top: 20px;
 }
 
@@ -148,3 +155,20 @@ body {
 .info .total {
   color: #7bc47f;
 }
+
+
+.Cinema .seats .row-after-200 {
+  width: 100%;           /* Ensure the div takes up the full width of the row */
+  text-align: center;    /* Center the text within the div */
+  margin-top: 20px;      /* Add some spacing above the div */
+}
+
+.Cinema .seats .row-after-200 p {
+  margin: 0;             /* Remove any default margin on the <p> */
+  padding: 10px;         /* Add padding for better spacing */
+  background-color: #444; /* Background color to distinguish the row */
+  color: white;          /* White text color for readability */
+  width: 100%;           /* Make sure the <p> takes up the full width of the parent div */
+  box-sizing: border-box; /* Include padding within the width */
+}
+
