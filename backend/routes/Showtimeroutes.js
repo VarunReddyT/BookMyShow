@@ -3,10 +3,17 @@ const ShowTime = require('../models/ShowTime');
 const router = express.Router();
 
 router.post('/showtimeregister', async (req, res) => {
-    const { ticketPrice, startDate, endDate, movieId, theatreId, showTime, screen, seats } = req.body;
+    const { ticketPrice, startDate, endDate, movieId, theatreId, showTime, screen } = req.body;
     const showtime = await ShowTime.findOne({ showTime, theatreId });
     if (showtime) return res.status(401).send('Showtime already exists in this theatre.');
-    const seatsMap = new Map(Object.entries(seats));
+    const seatsMap = new Map();
+    const rows = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (let i = 0; i < rows.length; i++) {
+        for (let j = 1; j <= 25; j++) {
+            const seat = `${rows[i]}${j}`;
+            seatsMap.set(seat, false);
+        }
+    }
     const showtimes = new ShowTime({ ticketPrice, startDate, endDate, movieId, theatreId, showTime, screen, seats: seatsMap });
     try {
         const savedShowtime = await showtimes.save();
@@ -16,6 +23,7 @@ router.post('/showtimeregister', async (req, res) => {
         res.status(400).send('Failed to save showtime: ' + err.message);
     }
 });
+
 // Get available seats for a showtime
 router.get('/showtime-seats/:id', async (req, res) => {
     try {
