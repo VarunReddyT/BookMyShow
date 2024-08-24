@@ -92,33 +92,20 @@ router.get('/gettickets', auth, async (req, res) => {
             const movie = await Movie.findById(reservation.movieId);
             const theatre = await Theatre.findById(reservation.theatreId);
 
+            // Format the date to exclude GMT
+            const formattedDate = new Date(reservation.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+
             return {
                 ...reservation._doc,
                 movieName: movie ? movie.title : 'Unknown Movie',
                 theatreName: theatre ? theatre.name : 'Unknown Theatre',
-                qrCodeDataUrl: reservation.qrcode // Assuming qrCode field contains the URL
+                date: formattedDate
             };
         }));
-
-        // Generate HTML to send back with QR codes
-        const html = reservationsWithDetails.map(reservation => `
-            <div>
-                <h1>Ticket Details</h1>
-                <p><strong>Order ID:</strong> ${reservation.orderId}</p>
-                <p><strong>Movie:</strong> ${reservation.movieName}</p>
-                <p><strong>Theatre:</strong> ${reservation.theatreName}</p>
-                <p><strong>Date:</strong> ${reservation.date}</p>
-                <p><strong>Time:</strong> ${reservation.startAt}</p>
-                <p><strong>Seats:</strong> ${reservation.seats.join(', ')}</p>
-                <p><strong>Total Price:</strong> ${reservation.total}</p>
-                <h2>QR Code</h2>
-                <img src="${reservation.qrcode}" alt="QR Code">
-            </div>
-        `).join('<hr>'); // Join each reservation with a horizontal rule
-
-        // Send HTML response
-        res.setHeader('Content-Type', 'text/html');
-        res.send(html);
 
         // Send JSON response
         res.json(reservationsWithDetails);
