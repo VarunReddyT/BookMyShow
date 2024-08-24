@@ -4,7 +4,7 @@ import './css/styles.css'
 
 const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 const seats = rows.flatMap(row => Array.from({ length: 25 }, (_, i) => `${row}${i + 1}`))
-const occupiedSeats = ['A20', 'A21', 'A30', 'A1', 'A2', 'A8', 'B9', 'B41', 'B35', 'B11', 'B65', 'B26', 'C37', 'C25', 'C44', 'C13', 'C2', 'C3', 'D10', 'D12', 'D50', 'D33', 'D28', 'D47']
+const occupiedSeats = ['']
 
 export default function TheatreSeats() {
   const [selectedSeats, setSelectedSeats] = useState([])
