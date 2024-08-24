@@ -5,7 +5,7 @@ const Movie = require('../models/Movie');
 const router = express.Router();
 
 router.post('/movieregister', async (req, res) => {
-    if(req.user.role !== 'admin') return res.status(401).send('Access Denied');
+    // if(req.user.role !== 'admin') return res.status(401).send('Access Denied');
     const { title, image, language, genre, director, trailer, description, duration, startDate, endDate, releaseDate, cast } = req.body;
     const movie = await Movie.findOne({ title });
     if (movie) return res.status(401).send('Movie already exists');

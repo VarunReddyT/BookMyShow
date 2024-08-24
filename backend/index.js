@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 const userRoutes = require('./routes/Userroutes');
 const movieRoutes = require('./routes/Movieroutes');
 const theatreRoutes = require('./routes/Theatreroutes');
-// const showTimeRoutes = require('./routes/Showtimeroutes');
+const showTimeRoutes = require('./routes/Showtimeroutes');
 const reservationRoutes = require('./routes/Reservationroutes');
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/movie', movieRoutes);
 app.use('/theatre', theatreRoutes);
-// app.use('/showtime', showTimeRoutes);
+app.use('/showtime', showTimeRoutes);
 app.use('/reservation', reservationRoutes);
 
 
