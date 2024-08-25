@@ -77,7 +77,7 @@ function AdvancedSlider() {
           <button className="bg-blue-600 text-white px-6 py-2 rounded cursor-pointer">Explore</button>
         </div>
 
-        <div className="absolute right-20 top-1/4 w-1/2 flex space-x-4 overflow-hidden">
+        <div className="absolute right-1 top-1/4 w-1/2 flex space-x-4 overflow-hidden">
           <div
             className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentIndex * 256}px)` }}
