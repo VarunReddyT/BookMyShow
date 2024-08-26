@@ -3,8 +3,6 @@ import BussinessMan from '../assets/MovieImages/BussinessMan.jpg';
 import KGF from '../assets/MovieImages/KGF.jpg';
 import Pushpa from '../assets/MovieImages/Pushpa-1.jpg';
 import Rangasthalam from '../assets/MovieImages/Rangasthalam.jpg';
-
-// Tailwind CSS classes directly applied to elements
 const locations = [
   {
     name: 'BusinessMan',
@@ -35,7 +33,7 @@ const locations = [
 function Card({ location, onClick }) {
   return (
     <div
-      className="flex-shrink-0 mx-2 w-64 h-96 rounded-lg overflow-hidden relative cursor-pointer"
+      className="flex-shrink-0 mx-2 w-64 h-70 rounded-lg overflow-hidden relative cursor-pointer"
       onClick={onClick}
     >
       <img src={location.image} className="w-full h-full object-cover" alt={location.name} />
@@ -67,7 +65,7 @@ function AdvancedSlider() {
     <div className="relative h-screen w-full overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-        style={{ backgroundImage: `url('${locations[currentIndex].bgImage}')` }}
+        style={{ backgroundImage: `url('${locations[currentIndex].bgImage}')`, width: '100%', height: '100%' }}
       ></div>
 
       <div className="absolute inset-0 bg-black bg-opacity-30">
