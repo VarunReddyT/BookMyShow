@@ -3,6 +3,7 @@ import BussinessMan from '../assets/MovieImages/BussinessMan.jpg';
 import KGF from '../assets/MovieImages/KGF.jpg';
 import Pushpa from '../assets/MovieImages/Pushpa-1.jpg';
 import Rangasthalam from '../assets/MovieImages/Rangasthalam.jpg';
+
 const locations = [
   {
     name: 'BusinessMan',
@@ -30,10 +31,10 @@ const locations = [
   }
 ];
 
-function Card({ location, onClick }) {
+function Card({ location, onClick, isActive }) {
   return (
     <div
-      className="flex-shrink-0 mx-2 w-64 h-70 rounded-lg overflow-hidden relative cursor-pointer"
+      className={`flex-shrink-0 w-64 h-70 rounded-lg overflow-hidden relative cursor-pointer transition-all duration-300 ${isActive ? 'scale-105' : 'scale-90 opacity-70'}`}
       onClick={onClick}
     >
       <img src={location.image} className="w-full h-full object-cover" alt={location.name} />
@@ -62,10 +63,10 @@ function AdvancedSlider() {
   };
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative w-screen h-screen overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-        style={{ backgroundImage: `url('${locations[currentIndex].bgImage}')`, width: '100%', height: '100%' }}
+        style={{ backgroundImage: `url('${locations[currentIndex].bgImage}')` }}
       ></div>
 
       <div className="absolute inset-0 bg-black bg-opacity-30">
@@ -75,16 +76,14 @@ function AdvancedSlider() {
           <button className="bg-blue-600 text-white px-6 py-2 rounded cursor-pointer">Explore</button>
         </div>
 
-        <div className="absolute right-1 top-1/4 w-1/2 flex space-x-4 overflow-hidden">
-          <div
-            className="flex transition-transform duration-500"
-            style={{ transform: `translateX(-${currentIndex * 256}px)` }}
-          >
+        <div className="absolute right-20 top-1/4 w-1/2">
+          <div className="flex space-x-4 overflow-hidden">
             {locations.map((location, index) => (
               <Card
                 key={location.name}
                 location={location}
                 onClick={() => goToSlide(index)}
+                isActive={index === currentIndex}
               />
             ))}
           </div>
