@@ -3,6 +3,7 @@ import Theatreseats from './components/Theatreseats.jsx'
 import Theatre from './components/th.jsx'
 import Home from './components/Home.jsx'
 import Navbar from './components/Navbar.jsx'
+import ShowTime from './components/ShowTime.jsx'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/tickets" element={<Theatreseats />} />
           <Route path="/theatre" element={<Theatre />} />
+          <Route path="/showtime" element={<ShowTime />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>

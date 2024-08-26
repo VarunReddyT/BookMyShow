@@ -8,6 +8,7 @@ const TheatreSchema = new Schema({
     seatLayout: { type: Array, required: true }, 
     image: { type: String, required: true },
     facilities: { type: Array, required: true },
+    movie : { type: Array, default: [] },
 });
 
 module.exports = mongoose.model('Theatre', TheatreSchema);

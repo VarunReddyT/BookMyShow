@@ -17,10 +17,10 @@ export default function TheatreSeats() {
         onSelectedSeatsChange={setSelectedSeats}
       />
 
-      <p className="info">
+      <p className="info text-white">
         You have selected <span className="count">{selectedSeats.length}</span> seats
       </p>
-      <button className="next-button">
+      <button className="next-button text-white">
         Next
       </button>
     </div>
@@ -56,6 +56,7 @@ function Cinema({ selectedSeats, onSelectedSeatsChange }) {
   }
 
   return (
+    <div className='bd'>
     <div className="Cinema">
       <div className="seats">
         <div className="upper-txt">
@@ -126,6 +127,7 @@ function Cinema({ selectedSeats, onSelectedSeatsChange }) {
         </div>
       </div>
       <div className="screen" />
+    </div>
     </div>
   )
 }

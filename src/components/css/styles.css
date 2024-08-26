@@ -6,14 +6,13 @@
   box-sizing: border-box;
 }
 
-body {
+.bd {
   margin: 0;
   padding: 0;
   font-family: 'Exo 2', sans-serif;
   background: #000000;
   color: white;
   font-size: 14px;
-
   min-height: 100vh;
   display: grid;
   place-items: center;
@@ -77,6 +76,7 @@ body {
   grid-gap: 15px;
   grid-template-columns: repeat(25, max-content);
   align-items: center;
+  justify-content: center;
 }
 
 .Cinema .seats .middle-txt,.upper-txt,.middle-txt,.lower-txt{
@@ -171,4 +171,3 @@ body {
   width: 100%;           /* Make sure the <p> takes up the full width of the parent div */
   box-sizing: border-box; /* Include padding within the width */
 }
-
