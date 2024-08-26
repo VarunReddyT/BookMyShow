@@ -46,4 +46,20 @@ router.put('/updatetheatre', async (req, res) => {
         res.status(400).send(err);
     }
 });
+
+router.put('/addmovie', async (req, res) => {
+    const { name, movie } = req.body;
+    const theatres = await Theatre.findOne({ name });
+    if (!theatres) return res.status(401).send('Theatre not found');
+    console.log(theatres.movie);
+    theatres.movie.push(movie);
+    try {
+        const savedTheatre = await theatres.save();
+        res.send(savedTheatre);
+        console.log("Movie added successfully");
+    } catch (err) {
+        res.status(400).send(err);
+    }
+}
+);
 module.exports = router;
