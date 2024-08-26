@@ -3,6 +3,8 @@ import Theatreseats from './components/Theatreseats.jsx'
 import Theatre from './components/th.jsx'
 import Home from './components/Home.jsx'
 import Navbar from './components/Navbar.jsx'
+import Signup from './components/Signup.jsx'
+import Login from './components/Login.jsx'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 function App() {
@@ -12,6 +14,8 @@ function App() {
       <Router>
         {/* <Navbar /> */}
         <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/tickets" element={<Theatreseats />} />
           <Route path="/theatre" element={<Theatre />} />
           <Route path="/" element={<Home />} />
