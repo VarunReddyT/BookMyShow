@@ -6,7 +6,7 @@ import axios from 'axios';
 const options = {
     title: "Date",
     autoHide: true,
-    todayBtn: true,
+    todayBtn: false,
     clearBtn: true,
     clearBtnText: "Clear",
     maxDate: new Date("2030-01-01"),
@@ -42,6 +42,8 @@ const options = {
 export default function ShowTime() {
 
     const [show, setShow] = useState(false);
+    const [theatres, setTheatres] = useState([]);
+    const [showtimes, setShowtimes] = useState([]);
     const handleChange = (selectedDate) => {
         console.log(selectedDate);
     }
@@ -77,7 +79,6 @@ export default function ShowTime() {
             </div>
             <div className="mt-12 px-6">
                 <h2 className="text-3xl font-semibold mb-6">Available Theatres</h2>
-
                 <div className="space-y-6">
                     <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
                         <h3 className="text-2xl font-semibold">PVR Cinemas</h3>
