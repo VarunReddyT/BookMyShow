@@ -7,9 +7,9 @@ const options = {
     title: "Date",
     autoHide: true,
     todayBtn: false,
-    clearBtn: true,
+    clearBtn: false,
     clearBtnText: "Clear",
-    maxDate: new Date("2030-01-01"),
+    maxDate: new Date(new Date().setMonth(new Date().getMonth() + 1)),
     minDate: new Date(),
     theme: {
         todayBtn: "",
@@ -18,7 +18,7 @@ const options = {
         text: "",
         input: "",
         inputIcon: "",
-        selected: "",
+        selected: " bg-red-500",
     },
     icons: {
         prev: () => <span>Previous</span>,
@@ -54,8 +54,9 @@ export default function ShowTime() {
     const getShowtimes = async() => {
         try{
             const response = await axios.get("http://localhost:4000/showtime/66cc97fc1dc842c18f4a9f62/theatres");
-            // console.log(response.data[0]['name']);
-            console.log(response.data['theatres'][0]['theatre']);
+            console.log(response.data);
+            setShowtimes(response.data['theatres'][0]['showtimes']);
+            // setTheatres(response.data['theatres'][0]['theatre']);
         }
         catch(err){
             console.log(err);
@@ -64,54 +65,38 @@ export default function ShowTime() {
 
     useEffect(() => {
         getShowtimes();
-    }  
-    , [])
+    }, [])
 
     return (
-        <div className="text-white bg-gray-900 min-h-screen">
-            <div className='showtimeUp h-96 bg-cover bg-center flex items-end p-6' style={{ backgroundImage: `url(${KGF})` }}>
-                <h1 className='text-white text-7xl font-bold'>1 Nenokkadine</h1>
+        <div className="text-white bg-gray-900 min-h-screen flex">
+            <div className='showtimeUp w-1/3 h-screen bg-cover bg-center flex items-end p-6 sticky top-0' style={{ backgroundImage: `url(${KGF})` }}>
+                <h1 className='text-white text-5xl font-bold'>1 Nenokkadine</h1>
             </div>
 
-            <div className='flex items-center justify-center mt-8'>
-                <div className='w-48'>
-                    <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
-                </div>
-            </div>
-            <div className="mt-12 px-6">
-                <h2 className="text-3xl font-semibold mb-6">Available Theatres</h2>
-                <div className="space-y-6">
-                    <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
-                        <h3 className="text-2xl font-semibold">PVR Cinemas</h3>
-                        <div className="flex space-x-4 mt-4">
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">10:00 AM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">1:00 PM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">4:00 PM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">7:00 PM</span>
-                        </div>
-                    </div>
-
-                    <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
-                        <h3 className="text-2xl font-semibold">INOX</h3>
-                        <div className="flex space-x-4 mt-4">
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">11:00 AM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">2:00 PM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">5:00 PM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">8:00 PM</span>
-                        </div>
-                    </div>
-
-                    <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
-                        <h3 className="text-2xl font-semibold">Cinepolis</h3>
-                        <div className="flex space-x-4 mt-4">
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">9:00 AM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">12:00 PM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">3:00 PM</span>
-                            <span className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">6:00 PM</span>
-                        </div>
+            <div className="w-2/3 p-6">
+                <div className='flex items-center justify-center'>
+                    <div className='w-48'>
+                        <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
                     </div>
                 </div>
+                {/* <div className="mt-6">
+                    <h2 className="text-3xl font-semibold mb-6">Available Theatres</h2>
+                    <div className="space-y-6">
+                        {theatres.map((theatre, index) => (
+                            <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-lg">
+                                <h3 className="text-2xl font-semibold">{theatre.name}</h3>
+                                <div className="flex space-x-4 mt-4">
+                                    {showtimes.map((showtime, index) => (
+                                        <span key={index} className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">{showtime.showTime}</span>
+                                    ))
+                                }
+                                </div>
+                            </div>
+                        ))
+                    }
+                    </div>
+                    </div> */}
+                </div>
             </div>
-        </div>
     );
 }
