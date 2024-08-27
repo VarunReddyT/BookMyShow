@@ -7,7 +7,7 @@ const seats = rows.flatMap(row => Array.from({ length: 25 }, (_, i) => `${row}${
 // const occupiedSeats = ['']
 
 export default function TheatreSeats() {
-  const [selectedSeats, setSelectedSeats] = useState([])
+  const [selectedSeats, setSelectedSeats] = useState([]); 
 
   return (
     <div className="App">
