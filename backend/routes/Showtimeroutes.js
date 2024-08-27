@@ -1,5 +1,7 @@
 const express = require('express');
 const ShowTime = require('../models/ShowTime');
+const Movie = require('../models/Movie');
+const Theatre = require('../models/Theatre');
 const router = express.Router();
 
 router.post('/showtimeregister', async (req, res) => {
@@ -90,6 +92,57 @@ router.delete('/deleteshowtime', async (req, res) => {
         console.log("Showtime deleted successfully");
     } catch (err) {
         res.status(400).send(err);
+    }
+});
+// Route to get theatres and showtimes for a specific movie
+router.get('/:movieId/theatres', async (req, res) => {
+    const { movieId } = req.params;
+
+    try {
+        const movie = await Movie.findById(movieId);
+        if (!movie) {
+            return res.status(404).json({ error: 'Movie not found' });
+        }
+        const showtimes = await ShowTime.find({ movieId })
+            .populate({
+                path: 'theatreId',
+                select: 'name city facilities seats seatLayout image'
+            });
+
+        if (!showtimes.length) {
+            return res.status(404).json({ error: 'No showtimes found for this movie' });
+        }
+        const theatres = showtimes.reduce((acc, showtime) => {
+            const theatreId = showtime.theatreId._id.toString();
+            if (!acc[theatreId]) {
+                acc[theatreId] = {
+                    theatre: {
+                        name: showtime.theatreId.name,
+                        city: showtime.theatreId.city,
+                        facilities: showtime.theatreId.facilities,
+                        seats: showtime.theatreId.seats,
+                        seatLayout: showtime.theatreId.seatLayout,
+                        image: showtime.theatreId.image
+                    },
+                    showtimes: []
+                };
+            }
+            acc[theatreId].showtimes.push({
+                showTime: showtime.showTime,
+                ticketPrice: showtime.ticketPrice,
+                screen: showtime.screen,
+                startDate: showtime.startDate,
+                endDate: showtime.endDate,
+                seats: showtime.seats
+            });
+
+            return acc;
+        }, {});
+        const theatresArray = Object.values(theatres);
+        res.json({ theatres: theatresArray });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error' });
     }
 });
 
