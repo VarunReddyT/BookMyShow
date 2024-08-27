@@ -53,8 +53,9 @@ export default function ShowTime() {
 
     const getShowtimes = async() => {
         try{
-            const response = await axios.get("http://localhost:4000/theatre/gettheatre/Shakthi");
-            console.log(response.data[0]['name']);
+            const response = await axios.get("http://localhost:4000/showtime/66cc97fc1dc842c18f4a9f62/theatres");
+            // console.log(response.data[0]['name']);
+            console.log(response.data['theatres'][0]['theatre']);
         }
         catch(err){
             console.log(err);
