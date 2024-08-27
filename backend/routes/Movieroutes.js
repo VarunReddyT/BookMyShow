@@ -54,4 +54,9 @@ router.delete('/deletemovie', async (req, res) => {
     }
 });
 
+router.get('/gettopmovies', async (req, res) => {
+    const movies = await Movie.find().sort({ releaseDate: -1 }).limit(5);
+    res.send(movies);
+});
+
 module.exports = router;
