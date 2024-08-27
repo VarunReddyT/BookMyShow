@@ -4,6 +4,8 @@ import Theatre from './components/th.jsx'
 import Home from './components/Home.jsx'
 import ShowTime from './components/ShowTime.jsx'
 import Navbar from './components/Navbar.jsx'
+import Signup from './components/Signup.jsx'
+import Login from './components/Login.jsx'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 function App() {

@@ -8,10 +8,11 @@ const movieRoutes = require('./routes/Movieroutes');
 const theatreRoutes = require('./routes/Theatreroutes');
 const showTimeRoutes = require('./routes/Showtimeroutes');
 const reservationRoutes = require('./routes/Reservationroutes');
+const bodyParser = require('body-parser');
 dotenv.config();
 
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
 app.use('/user', userRoutes);
 app.use('/movie', movieRoutes);
