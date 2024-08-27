@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
     const [username, setUsername] = useState('');
@@ -8,6 +9,8 @@ export default function Signup() {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -15,6 +18,7 @@ export default function Signup() {
                 username, password, name, phone, email
             });
             console.log('User saved successfully:', response.data);
+            navigate('/login');
         } catch (err) {
             console.error('Error saving user:', err);
         }

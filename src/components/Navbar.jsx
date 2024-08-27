@@ -3,8 +3,8 @@ import React from 'react'
 export default function Navbar() {
   return (
     <div>
-        <nav className="flex justify-between px-20 py-10 items-center bg-white">
-  <h1 className="text-xl text-gray-800 font-bold">HotCoffee</h1>
+        <nav className="flex justify-between px-20 py-4 items-center bg-white">
+  <h1 className="text-xl text-gray-800 font-bold">BookMyShow</h1>
   <div className="flex items-center">
     <div className="flex items-center">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 pt-0.5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -13,8 +13,8 @@ export default function Navbar() {
       <input className="ml-2 outline-none bg-transparent font-" type="text" name="search" id="search" placeholder="Search..." />
     </div>
     <ul className="flex items-center space-x-6">
-      <li className="font-semibold text-gray-700">Home</li>
-      <li className="font-semibold text-gray-700">Articles</li>
+      <li className="font-semibold text-gray-700">Movies</li>
+      <li className="font-semibold text-gray-700">Cinemas</li>
       <li>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path d="M12 14l9-5-9-5-9 5 9 5z" />
