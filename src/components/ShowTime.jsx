@@ -77,10 +77,6 @@ export default function ShowTime() {
                         <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
                     </div>
                 </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> f1b8e3d186ecb4dcf7c10b72371250aa9422de9e
                 <div className="mt-6">
                     <h2 className="text-3xl font-semibold mb-6">Available Theatres</h2>
                     <div className="space-y-6">
@@ -98,10 +94,6 @@ export default function ShowTime() {
                             </div>
                         ))}
                     </div>
-<<<<<<< HEAD
-                    </div>
-=======
->>>>>>> f1b8e3d186ecb4dcf7c10b72371250aa9422de9e
                 </div>
             </div>
         </div>
