@@ -37,35 +37,33 @@ const options = {
         month: "long",
         year: "numeric"
     }
-}
+};
 
 export default function ShowTime() {
 
     const [show, setShow] = useState(false);
     const [theatres, setTheatres] = useState([]);
-    const [showtimes, setShowtimes] = useState([]);
+
     const handleChange = (selectedDate) => {
         console.log(selectedDate);
-    }
+    };
     const handleClose = (state) => {
         setShow(state);
-    }
+    };
 
-    const getShowtimes = async() => {
-        try{
+    const getShowtimes = async () => {
+        try {
             const response = await axios.get("http://localhost:4000/showtime/66cc97fc1dc842c18f4a9f62/theatres");
             console.log(response.data);
-            setShowtimes(response.data['theatres'][0]['showtimes']);
-            // setTheatres(response.data['theatres'][0]['theatre']);
-        }
-        catch(err){
+            setTheatres(response.data['theatres']);
+        } catch (err) {
             console.log(err);
         }
-    }
+    };
 
     useEffect(() => {
         getShowtimes();
-    }, [])
+    }, []);
 
     return (
         <div className="text-white bg-gray-900 min-h-screen flex">
@@ -79,24 +77,26 @@ export default function ShowTime() {
                         <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
                     </div>
                 </div>
-                {/* <div className="mt-6">
+
+                <div className="mt-6">
                     <h2 className="text-3xl font-semibold mb-6">Available Theatres</h2>
                     <div className="space-y-6">
                         {theatres.map((theatre, index) => (
                             <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-lg">
-                                <h3 className="text-2xl font-semibold">{theatre.name}</h3>
+                                <h3 className="text-2xl font-semibold">{theatre.theatre.name}</h3>
+                                <p className="text-lg">{theatre.theatre.city}</p>
                                 <div className="flex space-x-4 mt-4">
-                                    {showtimes.map((showtime, index) => (
-                                        <span key={index} className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">{showtime.showTime}</span>
-                                    ))
-                                }
+                                    {theatre.showtimes.map((showtime, showtimeIndex) => (
+                                        <span key={showtimeIndex} className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">
+                                            {showtime.showTime}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
-                        ))
-                    }
+                        ))}
                     </div>
-                    </div> */}
                 </div>
             </div>
+        </div>
     );
 }
