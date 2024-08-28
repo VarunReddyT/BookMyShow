@@ -8,7 +8,7 @@ export default function Theatre() {
   const [seats, setSeats] = useState([])
 
   // Replace this with your actual showtime ID
-  const showtimeId = '66c9c4c4097bd479b4161f38'
+  const showtimeId = '66c9773649135643ccb194ee'
 
   useEffect(() => {
     // Fetch the seat data from the backend using axios

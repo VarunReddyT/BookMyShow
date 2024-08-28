@@ -79,7 +79,7 @@ export default function ShowTime() {
                         <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
                     </div>
                 </div>
-                {/* <div className="mt-6">
+                <div className="mt-6">
                     <h2 className="text-3xl font-semibold mb-6">Available Theatres</h2>
                     <div className="space-y-6">
                         {theatres.map((theatre, index) => (
@@ -95,7 +95,7 @@ export default function ShowTime() {
                         ))
                     }
                     </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
     );
