@@ -20,7 +20,7 @@ export default function TheatreSeats() {
       <p className="info text-white">
         You have selected <span className="count">{selectedSeats.length}</span> seats
       </p>
-      <button className="next-button text-white">
+      <button className="next-button text-white bg-green-500">
         Next
       </button>
     </div>

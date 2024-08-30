@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Datepicker from "tailwind-datepicker-react";
 import KGF from '../assets/MovieImages/KGF.jpg';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const options = {
     title: "Date",
@@ -61,6 +62,13 @@ export default function ShowTime() {
         }
     };
 
+    const navigate = useNavigate();
+
+    const handleShowtime = async(showtime) => {
+        localStorage.setItem('showtime', showtime);
+        navigate("/theatre");
+    };
+
     useEffect(() => {
         getShowtimes();
     }, []);
@@ -86,7 +94,7 @@ export default function ShowTime() {
                                 <p className="text-lg">{theatre.theatre.city}</p>
                                 <div className="flex space-x-4 mt-4">
                                     {theatre.showtimes.map((showtime, showtimeIndex) => (
-                                        <span key={showtimeIndex} className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer">
+                                        <span key={showtimeIndex} className="bg-red-500 py-2 px-4 rounded-lg cursor-pointer" onClick={()=>handleShowtime(showtime.showTime)}>
                                             {showtime.showTime}
                                         </span>
                                     ))}
