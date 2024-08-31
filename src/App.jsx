@@ -1,4 +1,3 @@
-import React from 'react'
 // import Theatreseats from './components/Theatreseats.jsx'
 import Theatre from './components/th.jsx'
 import Home from './components/Home.jsx'
@@ -8,6 +7,8 @@ import ShowTime from './components/ShowTime.jsx'
 import MovieRegisterForm from './components/CreateMovie.jsx'
 import Theatredashboard from './components/Theatredashboard.jsx'
 // import Navbar from './components/Navbar.jsx'
+import Navbar from './components/Navbar.jsx'
+import Footer from './components/Footer.jsx' // Import the Footer component
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import SeatsConfirmation from './components/SeatsConfirmation.jsx'
@@ -16,7 +17,7 @@ function App() {
   return (
     <>
       <Router>
-        {/* <Navbar /> */}
+        <Navbar />
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
@@ -28,6 +29,7 @@ function App() {
           <Route path="/theatredashboard" element={<Theatredashboard/>}/>
           <Route path="/" element={<Home />} />
         </Routes>
+        <Footer/> {/* Add the Footer component */}
       </Router>
     </>
   )

@@ -133,7 +133,7 @@ function Cinema({ seats, selectedSeats, onSelectedSeatsChange }) {
       <div className="Cinema">
         <div className="seats">
           <div className="upper-txt">
-            <p>Premium</p>
+            <p>Premium</p>React
           </div>
           <div className='upper'>
             {seats.slice(0, 200).map(([seatNumber, status]) => {

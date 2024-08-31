@@ -59,4 +59,10 @@ router.get('/gettopmovies', async (req, res) => {
     res.send(movies);
 });
 
+router.get('/moviebyid/:id', async (req, res) => {
+    const movieId = req.params.id;
+    const movie = await Movie.find({ _id: movieId });
+    res.send(movie);
+}
+);
 module.exports = router;

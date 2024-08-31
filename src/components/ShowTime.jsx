@@ -44,6 +44,8 @@ export default function ShowTime() {
 
     const [show, setShow] = useState(false);
     const [theatres, setTheatres] = useState([]);
+    const [response, setResponse] = useState('');
+    const [bgImage, setBgImage] = useState("");
 
     const handleChange = (selectedDate) => {
         console.log(selectedDate);
@@ -52,15 +54,26 @@ export default function ShowTime() {
         setShow(state);
     };
 
-    const getShowtimes = async () => {
+    const getShowtimes = async (movieId) => {
+    
         try {
-            const response = await axios.get("http://localhost:4000/showtime/66cc97fc1dc842c18f4a9f62/theatres");
+            const response = await axios.get(`http://localhost:4000/showtime/${movieId}/theatres`);
             console.log(response.data);
             setTheatres(response.data['theatres']);
         } catch (err) {
             console.log(err);
         }
     };
+    const getMovieName = async (movieId) => {
+        try {
+            const response = await axios.get(`http://localhost:4000/movie/moviebyid/${movieId}`);
+            console.log(response.data[0]);
+            setResponse(response.data[0]);
+            setBgImage(response.data[0].image);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const navigate = useNavigate();
 
@@ -70,13 +83,15 @@ export default function ShowTime() {
     };
 
     useEffect(() => {
-        getShowtimes();
+        const movieId = localStorage.getItem('movieId');
+        getShowtimes(movieId);
+        getMovieName(movieId);
     }, []);
 
     return (
         <div className="text-white bg-gray-900 min-h-screen flex">
-            <div className='showtimeUp w-1/3 h-screen bg-cover bg-center flex items-end p-6 sticky top-0' style={{ backgroundImage: `url(${KGF})` }}>
-                <h1 className='text-white text-5xl font-bold'>1 Nenokkadine</h1>
+            <div className='showtimeUp w-1/3 h-screen bg-cover bg-center flex items-end p-6 sticky top-0' style={{ backgroundImage: `url(${bgImage})` }}>
+                <h1 className='text-white text-5xl font-bold'>{response.title}</h1>
             </div>
 
             <div className="w-2/3 p-6">
