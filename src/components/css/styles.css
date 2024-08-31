@@ -126,6 +126,16 @@
   }
 }
 
+
+.footer {
+  position: static;
+  bottom: 0;
+  width: 100%;
+  background: black;
+  /* box-shadow: 0px 0px 50px 5px rgba(255,255,255,0.2); */
+}
+
+
 .seat {
   display: inline-block;
   background: #c5bebe;
