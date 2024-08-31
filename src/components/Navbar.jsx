@@ -40,12 +40,11 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <a className="block px-3 py-2 rounded-md text-base font-medium text-slate-50 hover:text-white hover:bg-gray-700" href="#">Home</a>
           <a className="block px-3 py-2 rounded-md text-base font-medium text-slate-50 hover:text-white hover:bg-gray-700" href="#">Link</a>
-          <button className="w-full text-left px-3 py-2 rounded-md text-base font-medium bg-green-500 text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500" type="button">Sign In</button>
+          <button className="w-full text-left px-3 py-2 rounded-md text-base font-medium bg-green-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500" type="button">Sign In</button>
         </div>
       </div>
     </nav>

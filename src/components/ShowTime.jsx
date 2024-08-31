@@ -90,7 +90,7 @@ export default function ShowTime() {
 
     return (
         <div className="text-white bg-gray-900 min-h-screen flex">
-            <div className='showtimeUp w-1/3 h-screen bg-cover bg-center flex items-end p-6 sticky top-0' style={{ backgroundImage: `url(${bgImage})` }}>
+            <div className='showtimeUp w-1/3 h-screen bg-cover bg-center flex items-end p-6 sticky top-0 rounded-lg' style={{ backgroundImage: `url(${bgImage})` }}>
                 <h1 className='text-white text-5xl font-bold'>{response.title}</h1>
             </div>
 
