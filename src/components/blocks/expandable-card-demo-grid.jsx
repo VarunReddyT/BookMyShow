@@ -1,6 +1,6 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import axios from "axios"; // Assuming you're using axios for HTTP requests
+import axios from "axios";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
 export default function ExpandableCardDemo() {
@@ -14,11 +14,11 @@ export default function ExpandableCardDemo() {
       try {
         const response = await axios.get("http://localhost:4000/movie/getmovies");
         const movies = response.data.map((movie) => ({
+          key: movie._id,
           title: movie.title,
           description: movie.description,
           src: movie.image,
           ctaText: "Book Now",
-          ctaLink: "http://localhost:5173/showtime",
           content: () => (
             <div>
               <p><strong>Language:</strong> {movie.language}</p>
@@ -71,7 +71,7 @@ export default function ExpandableCardDemo() {
 
   return (
     <motion.div>
-       <motion.div className="mt-10 mb-5 flex justify-center">
+      <motion.div className="mt-10 mb-5 flex justify-center">
         <h1 className="text-white text-2xl font-semibold bg-gradient-to-r from-red-500 to-red-800 px-6 py-2 rounded-lg shadow-md">
           Now Showing
         </h1>
@@ -135,17 +135,17 @@ export default function ExpandableCardDemo() {
                     </motion.p>
                   </div>
 
-                  <motion.a
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    href={active.ctaLink}
+                  <a
+                    href={`/showtime`}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
+                    onClick={() => {
+                      localStorage.setItem("movieId", active.key);  
+                    }}
                   >
                     {active.ctaText}
-                  </motion.a>
+                  </a>
                 </div>
                 <div className="pt-4 relative px-4">
                   <motion.div

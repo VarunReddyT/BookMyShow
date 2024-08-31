@@ -54,18 +54,19 @@ export default function ShowTime() {
         setShow(state);
     };
 
-    const getShowtimes = async () => {
+    const getShowtimes = async (movieId) => {
+    
         try {
-            const response = await axios.get("http://localhost:4000/showtime/66d2c8ed8adb84c7277c974e/theatres");
+            const response = await axios.get(`http://localhost:4000/showtime/${movieId}/theatres`);
             console.log(response.data);
             setTheatres(response.data['theatres']);
         } catch (err) {
             console.log(err);
         }
     };
-    const getMovieName = async () => {
+    const getMovieName = async (movieId) => {
         try {
-            const response = await axios.get("http://localhost:4000/movie/moviebyid/66d2c8ed8adb84c7277c974e");
+            const response = await axios.get(`http://localhost:4000/movie/moviebyid/${movieId}`);
             console.log(response.data[0]);
             setResponse(response.data[0]);
             setBgImage(response.data[0].image);
@@ -82,8 +83,9 @@ export default function ShowTime() {
     };
 
     useEffect(() => {
-        getShowtimes();
-        getMovieName();
+        const movieId = localStorage.getItem('movieId');
+        getShowtimes(movieId);
+        getMovieName(movieId);
     }, []);
 
     return (
