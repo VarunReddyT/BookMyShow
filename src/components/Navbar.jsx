@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -8,18 +8,16 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-slate-950 shadow-md">
-      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-        <a className="text-xl font-bold text-slate-50" href="#">Navbar</a>
+    <nav className="bg-grey-950 shadow-md">
+      <div className="container mx-auto px-10 py-3 flex items-center justify-between">
+        <Link to="/" className="text-xl font-bold text-slate-50">BookMyShow</Link>
         
-        {/* Desktop menu */}
         <div className="hidden sm:flex items-center space-x-4">
-          <a className="text-slate-50 hover:text-gray-300" href="#">Home</a>
-          <a className="text-slate-50 hover:text-gray-300" href="#">Link</a>
-          <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500" type="button">Sign In</button>
+          <Link /*to="/movies"*/ className="text-slate-50 hover:text-gray-300">Movies</Link>
+          <Link /* to="/cinemas"*/ className="text-slate-50 hover:text-gray-300">Cinemas</Link>
+          <button className="px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500" type="button">Sign In</button>
         </div>
 
-        {/* Mobile menu button */}
         <button
           className="sm:hidden p-2 text-gray-400 hover:text-slate-50 focus:outline-none focus:ring-2 focus:ring-gray-600"
           aria-label="Toggle navigation"

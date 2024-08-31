@@ -71,6 +71,11 @@ export default function ExpandableCardDemo() {
 
   return (
     <motion.div>
+       <motion.div className="mt-10 mb-5 flex justify-center">
+        <h1 className="text-white text-2xl font-semibold bg-gradient-to-r from-red-500 to-red-800 px-6 py-2 rounded-lg shadow-md">
+          Now Showing
+        </h1>
+      </motion.div>
       <AnimatePresence>
         {active && typeof active === "object" && (
           <motion.div

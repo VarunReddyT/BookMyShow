@@ -60,10 +60,8 @@ function AdvancedSlider() {
           <button className="bg-blue-600 text-white px-4 md:px-6 py-2 rounded cursor-pointer">Explore</button>
         </div>
 
-        <div className="hidden md:block absolute right-4 top-20 md:right-20 md:top-1/4 lg:right-20 lg:top-10 md:w-1/2 lg:w-1/2 overflow-hidden">
-        <div className="mb-4 flex justify-center">
-            <h1 className="text-white text-2xl font-semibold">Now Showing</h1>
-          </div>
+        <div className="hidden md:block absolute right-4 top-20 md:right-20 md:top-1/4 lg:right-20 lg:top-20 md:w-1/2 lg:w-1/2 overflow-hidden">
+       
           <div className="flex w-full transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 30}%)` }}>
             {locations.map((location, index) => (
               <Card
