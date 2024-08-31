@@ -17,13 +17,24 @@ export default function ExpandableCardDemo() {
           title: movie.title,
           description: movie.description,
           src: movie.image,
-          ctaText: "Watch Trailer",
-          ctaLink: movie.trailer,
+          ctaText: "Book Now",
+          ctaLink: "http://localhost:5173/showtime",
           content: () => (
             <div>
               <p><strong>Language:</strong> {movie.language}</p>
               <p><strong>Genre:</strong> {movie.genre}</p>
               <p><strong>Director:</strong> {movie.director}</p>
+              <p>
+                <strong>Watch Trailer:</strong>{" "}
+                <a
+                  href={movie.trailer}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 underline"
+                >
+                  {movie.trailer}
+                </a>
+              </p>
               <p><strong>Duration:</strong> {movie.duration} minutes</p>
               <p><strong>Release Date:</strong> {new Date(movie.releaseDate).toLocaleDateString()}</p>
               <p><strong>Cast:</strong> {movie.cast.join(", ")}</p>
@@ -59,7 +70,7 @@ export default function ExpandableCardDemo() {
   useOutsideClick(ref, () => setActive(null));
 
   return (
-    <>
+    <motion.div>
       <AnimatePresence>
         {active && typeof active === "object" && (
           <motion.div
@@ -87,7 +98,10 @@ export default function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white overflow-y-auto dark:bg-neutral-900 sm:rounded-3xl "
+              style={{
+                scrollbarWidth: "none",
+              }}
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <img
@@ -134,7 +148,7 @@ export default function ExpandableCardDemo() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-y-auto dark:text-neutral-400"
                   >
                     {typeof active.content === "function"
                       ? active.content()
@@ -176,7 +190,7 @@ export default function ExpandableCardDemo() {
           </motion.div>
         ))}
       </ul>
-    </>
+    </motion.div>
   );
 }
 
