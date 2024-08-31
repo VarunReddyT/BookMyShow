@@ -16,7 +16,7 @@ export default function Theatre() {
     const fetchSeats = async () => {
       try {
         const response = await axios.get(`http://localhost:4000/showtime/showtime-seats/${showtimeId}`);
-        setSeats(Object.entries(response.data.seats)); // Convert the seats object to an array of [seat, status]
+        setSeats(Object.entries(response.data.seats)); // Convert the seats object to an array of [seatNumber, status]
       } catch (err) {
         console.error("Error fetching seats:", err);
       }
@@ -117,14 +117,14 @@ function ShowCase() {
 }
 
 function Cinema({ seats, selectedSeats, onSelectedSeatsChange }) {
-  function handleSelectedState(seat) {
-    const isSelected = selectedSeats.includes(seat);
+  function handleSelectedState(seatNumber) {
+    const isSelected = selectedSeats.includes(seatNumber);
     if (isSelected) {
       onSelectedSeatsChange(
-        selectedSeats.filter(selectedSeat => selectedSeat !== seat)
+        selectedSeats.filter(selectedSeat => selectedSeat !== seatNumber)
       );
     } else {
-      onSelectedSeatsChange([...selectedSeats, seat]);
+      onSelectedSeatsChange([...selectedSeats, seatNumber]);
     }
   }
 
@@ -136,18 +136,21 @@ function Cinema({ seats, selectedSeats, onSelectedSeatsChange }) {
             <p>Premium</p>
           </div>
           <div className='upper'>
-            {seats.slice(0, 200).map(seat => {
-              const isSelected = selectedSeats.includes(seat);
+            {seats.slice(0, 200).map(([seatNumber, status]) => {
+              const isSelected = selectedSeats.includes(seatNumber);
               return (
                 <span 
                   tabIndex="0"
-                  key={seat}
+                  key={seatNumber}
                   className={clsx(
                     'seat',
-                    isSelected && 'selected'
+                    isSelected && 'selected',
+                    status === 'occupied' && 'occupied'
                   )}
-                  onClick={()=>handleSelectedState(seat)}
-                />
+                  onClick={()=>handleSelectedState(seatNumber)}
+                >
+                  {seatNumber}
+                </span>
               );
             })}
           </div>
@@ -157,18 +160,21 @@ function Cinema({ seats, selectedSeats, onSelectedSeatsChange }) {
           </div>
 
           <div className='middle'>
-            {seats.slice(250, 450).map(seat => {
-              const isSelected = selectedSeats.includes(seat);
+            {seats.slice(250, 450).map(([seatNumber, status]) => {
+              const isSelected = selectedSeats.includes(seatNumber);
               return (
                 <span
                   tabIndex="0"
-                  key={seat}
+                  key={seatNumber}
                   className={clsx(
                     'seat',
-                    isSelected && 'selected'
+                    isSelected && 'selected',
+                    status === 'occupied' && 'occupied'
                   )}
-                  onClick={() => handleSelectedState(seat)}
-                />
+                  onClick={() => handleSelectedState(seatNumber)}
+                >
+                  {seatNumber}
+                </span>
               );
             })}
           </div>
@@ -178,18 +184,21 @@ function Cinema({ seats, selectedSeats, onSelectedSeatsChange }) {
           </div>
           
           <div className='lower'>
-            {seats.slice(200, 250).map(seat => {
-              const isSelected = selectedSeats.includes(seat);
+            {seats.slice(200, 250).map(([seatNumber, status]) => {
+              const isSelected = selectedSeats.includes(seatNumber);
               return (
                 <span
                   tabIndex="0"
-                  key={seat}
+                  key={seatNumber}
                   className={clsx(
                     'seat',
-                    isSelected && 'selected'
+                    isSelected && 'selected',
+                    status === 'occupied' && 'occupied'
                   )}
-                  onClick={() => handleSelectedState(seat)}
-                />
+                  onClick={() => handleSelectedState(seatNumber)}
+                >
+                  {seatNumber}
+                </span>
               );
             })}
           </div>
